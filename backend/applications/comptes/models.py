@@ -8,13 +8,13 @@ from applications.structure_academique.models import Domaine,Mention,Etudiant
 class Utilisateur(models.Model):
     nom_utilisateur = models.CharField( max_length=100)
     prenom_utilisateur = models.CharField( max_length=100)
-    r_c = (
+    role_c = (
         ('ADMIN', 'Administrateur'),
         ('RESPONSABLE', 'Responsable'),
-        ('PROFESSEUR', 'Proffeseur'),
+        ('PROFESSEUR', 'Professeur'),
         ('DELEGUE', 'Délégué'),
     )
-    role = models.CharField( max_length=20, choices=r_c)
+    role = models.CharField( max_length=20, choices=role_c)
     mot_de_passe = models.CharField( max_length=255)
 
     def __str__(self):

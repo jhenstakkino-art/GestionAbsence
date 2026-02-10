@@ -6,5 +6,7 @@ app_name = "applications.comptes"
 
 urlpatterns = [
     path('index/', views.index, name='index'),
-    path('utilisateur/', UtilisateurListView.as_view()),
+    path('login/', views.Userlogin, name='login'),
+    path('register/', views.Userregister, name='register'),
+    path('dashboard/', UtilisateurListView.as_view()),
 ]
