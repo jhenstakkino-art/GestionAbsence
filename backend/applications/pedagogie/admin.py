@@ -11,5 +11,5 @@ class UEAdmin(admin.ModelAdmin):
 @admin.register(Seance)
 class SeanceAdmin(admin.ModelAdmin):
     list_display = ('ue','professeur_s','date','h_debut','h_fin')
-    list_filter = ('h_debu','h_fin','date')
+    list_filter = ('h_debut','h_fin','date')
     search_fields = ('ue','professeur_s')

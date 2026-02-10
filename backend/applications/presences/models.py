@@ -26,7 +26,7 @@ class PresenceEmpreinte(models.Model):
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class PresenceProf(models.Model):
-    professeur_pp = models.ForeignKey( Professeur,on_delete=models.SET_NULL, related_name= 'pps')
+    professeur_pp = models.ForeignKey( Professeur,on_delete=models.SET_NULL, related_name= 'pps', null=True)
     seance_pp = models.ForeignKey( Seance, on_delete=models.PROTECT, related_name= 'pps')
     etudiant_pp = models.ForeignKey( Etudiant, on_delete=models.PROTECT, related_name= 'pps')
     choix_pp =(
@@ -45,7 +45,7 @@ class PresenceProf(models.Model):
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class PresenceDelegue(models.Model):
-    delegue_pd = models.ForeignKey(Delegue, on_delete=models.SET_NULL, related_name= 'pds')
+    delegue_pd = models.ForeignKey(Delegue, on_delete=models.SET_NULL, related_name= 'pds', null=True)
     seance_pd = models.ForeignKey(Seance, on_delete=models.PROTECT, related_name='pds')
     etudiant_pd = models.ForeignKey(Etudiant, on_delete=models.PROTECT, related_name= 'pds')
     choix_pd =(

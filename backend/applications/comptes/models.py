@@ -1,6 +1,8 @@
 from django.db import models
 from applications.structure_academique.models import Domaine,Mention,Etudiant
 
+
+
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class Utilisateur(models.Model):

@@ -43,7 +43,7 @@ class PresenceEmpreinteAdmin(ReadOnlyAdmin):
 @admin.register(PresenceProf)
 class PresenceProfAdmin(ReadOnlyAdmin):
     list_display = ('seance_pp', 'etudiant_pp', 'statu_pp')
-    search_fields = ('etudiant_pp')
+    search_fields = ['etudiant_pp']
 
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -51,4 +51,4 @@ class PresenceProfAdmin(ReadOnlyAdmin):
 @admin.register(PresenceDelegue)
 class PresenceDelegueAdmin(ReadOnlyAdmin):
     list_display = ('seance_pd', 'etudiant_pd', 'statu_pd')
-    search_fields = ('etudiant_pd')
+    search_fields = ['etudiant_pd']

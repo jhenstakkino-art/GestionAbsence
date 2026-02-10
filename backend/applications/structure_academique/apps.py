@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class StructureAcademiqueConfig(AppConfig):
-    name = 'structure_academique'
+    name = 'applications.structure_academique'
