@@ -1,31 +1,59 @@
-.dash-container{
-    background-color: #4a69bd;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    
-}
 
-header{
-    display: flex;
-    flex-direction: column;
-    align-items:baseline;
-    
-    
-}
+.soratra{
 
-header h1{
-    padding-left: 50px;
+    text-align: center;
 
 }
 
-.menu-list ul li {
-    padding-top: 50px;
-    list-style-type: none;
-    font-size: 30px;
-    
+/* INPUT GROUP */
+.input-group {
+    background-color: #333;
+    margin-left: 30px;
+    padding: 20px;
+    font-size: 16px;
+
 }
 
-.menu-list ul li a {
-    color: white;
+
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #fff;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* INPUT & SELECT */
+.input-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 13px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(42, 144, 170, 0.2);
+  outline: none;
+}
+
+
+.rightgauche, .rightdroite{
+  width:49.5%;
+  border-radius: 10px;
+  
+}
+
+.rightgauche{
+  background-color: #f0e9e9;
+  
+}
+.rightdroite{
+  background-color: rgb(206, 195, 181);
+
+
 }
