@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FaHome, FaUserCircle, FaClipboardCheck, FaGraduationCap, FaUserCheck, FaChartBar, FaUniversity } from "react-icons/fa"
 import { MdOutlineToday } from "react-icons/md"
 import "../styles/dashboard.css";
@@ -181,7 +182,7 @@ export default function Dashboard() {
           <p><FaGraduationCap></FaGraduationCap> Evaluation</p>
           <p><FaUserCheck></FaUserCheck> Présence</p>
           <p><FaChartBar></FaChartBar> Statistique</p>
-          <p><FaUniversity></FaUniversity> Structure Académique</p>
+          <Link to="/enregEtudiant"><p><FaUniversity></FaUniversity> Structure Académique</p></Link>
 
         </div>
 
@@ -231,7 +232,11 @@ export default function Dashboard() {
 
       </div>
 
-      {/* CONTENT */}
+
+      {/***********************************************00000000000000000000000000000000000000000000000**********************************************************************/}
+      {/* CONTENT STATISTIQUE ITO DIA REHEFA MIKITIKA MENU DIA MIOVA FOTSINY */}V
+      {/***********************************************00000000000000000000000000000000000000000000000**********************************************************************/}
+
       <div style={styles.content}>
         <h2>Présence fait par le délégué</h2>
 
@@ -333,9 +338,13 @@ export default function Dashboard() {
             </table>
           </div>
         </div>
-
-
       </div>
+
+      {/***********************************************00000000000000000000000000000000000000000000000**********************************************************************/}
+      {/***********************************************00000000000000000000000000000000000000000000000**********************************************************************/}
+
+
+
     </div>
   );
 }
