@@ -23,8 +23,8 @@ def index(request):
     """API pointy check endpoint tafiditra ao amin'ny Pointy."""
     return Response({
         'status': 'ok',
-        'message': 'L\'application est en ligne et fonctionne correctement.'
-    }, status=status.HTTP_200_OK)
+        'message': 'L\'application est opérationnelle. L\'accès au système est strictement limité aux profils autorisés : l\'Administrateur, le Responsable, le Professeur et le Délégué. Chaque utilisateur doit disposer d\'une authentification valide ainsi que des droits d\'accès appropriés.'
+    }, status=status.HTTP_200_OK) 
 
 
 # Utilisateur liste views

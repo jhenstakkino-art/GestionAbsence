@@ -246,7 +246,7 @@ export default function Dashboard() {
           </div>
           
           <div className="rightdroite">
-            <img src="http://localhost:8000/applications.statistiques/diagramme/" style={{ maxWidth:'80%' ,height:"93%"}}/>
+            <img src="http://localhost:8000/applications.statistiques/diagramme/" style={{height:"93%"}}/>
           
           </div>
 
