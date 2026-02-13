@@ -240,21 +240,34 @@ export default function Dashboard() {
 
           {/*MAMOAKA NY SARY PILE */}
           <div className="rightgauche">
-           
+
             <img id="graphique" style={{ maxWidth: '80%', height: "93%" }} />
 
           </div>
-          
-          <div className="rightdroite">
-            <img src="http://localhost:8000/applications.statistiques/diagramme/" style={{height:"93%"}}/>
-          
-          </div>
 
-          <button onClick={envoyerTaux}
-          style={{
-            background:"green",
-            height:55,
-            }}>GRAPHIQUE</button>
+          <div className="rightdroite">
+            <img src="http://localhost:8000/applications.statistiques/diagramme/" style={{ height: "93%" }} />
+
+          </div>
+          <div>
+            <button onClick={envoyerTaux}
+              style={{
+                background: "green",
+                height: 55,
+                width: "90%",
+                
+              }}>GRAPHIQUE</button>
+
+            <button onClick={envoyerTaux}
+              style={{
+                marginTop:"10%",
+                background: "#c03300",
+                height: 55,
+                width: "90%"
+              }}>RESTART</button>
+
+
+          </div>
 
         </div>
 
@@ -354,7 +367,7 @@ const styles = {
 
   menu_right: {
     paddingRight: 30,
-    
+
 
 
   },
