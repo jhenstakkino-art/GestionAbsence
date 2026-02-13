@@ -278,19 +278,19 @@ export default function Dashboard() {
           <div style={styles.cards}>
             <div style={styles.card}>
               <h4>Présents</h4>
-              <span>{nbPresent}</span>
+              <span style={{fontSize:30, color:"#2e7087", fontWeight:"bold"}}>{nbPresent}</span>
             </div>
             <div style={styles.card}>
               <h4>Absents</h4>
-              <span>{nbAbsent}</span>
+              <span style={{fontSize:30, color:"#cf3333", fontWeight:"bold"}}>{nbAbsent}</span>
             </div>
             <div style={styles.card}>
               <h4>Retards</h4>
-              <span>0</span>
+              <span style={{fontSize:30, color:"#419851", fontWeight:"bold"}}>{nbRetard}</span>
             </div>
             <div style={styles.card}>
               <h4>Total</h4>
-              <span>{dernierStat.length}</span>
+              <span style={{fontSize:30, color:"#be988b", fontWeight:"bold"}}>{dernierStat.length}</span>
             </div>
           </div>
 
