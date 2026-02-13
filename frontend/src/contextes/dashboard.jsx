@@ -2,17 +2,10 @@ import React, { useState, useEffect } from "react";
 import { FaHome, FaUserCircle, FaClipboardCheck, FaGraduationCap, FaUserCheck, FaChartBar, FaUniversity } from "react-icons/fa"
 import { MdOutlineToday } from "react-icons/md"
 import "../styles/dashboard.css";
+
+
+
 export default function Dashboard() {
-
-  const [formData, setFormData] = useState({
-    domaine: '',
-    mention: '',
-    niveau: 1, //par défaut L1 na 1
-
-  });
-
-
-
 
   const niveau_choix = [
     { value: 1, label: "L1" },
@@ -41,6 +34,17 @@ export default function Dashboard() {
   ]
 
 
+  const nom_etudiant = ["RANDRETRA", "VELOSOA", "RATOVOARISOA", "RASOA", "RABE", "RAKOTO"];
+  const prenom_etudiant = ["Felantsoa", "Stakkino", "Narindra", "Sitraka", "Miohitra", "Anjanirina Toavina"];
+
+
+  const [formData, setFormData] = useState({
+    domaine: '',
+    mention: '',
+    niveau: 1, //par défaut L1 na 1
+
+  });
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -49,12 +53,82 @@ export default function Dashboard() {
 
   };
 
+
   //Ilay amohana ny presence jour
   const [dernierStat, setDernierStat] = useState([]);
 
+
+  // ITO NO MANISA NY ABSENT
+  const nbPresent = dernierStat.filter(e => e.statut).length;
+  const nbAbsent = dernierStat.filter(e => !e.statut).length;
+  const nbRetard = dernierStat.filter(e => e.statut === "Retard").length;
+
+  // Calculez les taux
+  const tauxPresent = (nbPresent / dernierStat.length) * 100;
+  const tauxAbsent = (nbAbsent / dernierStat.length) * 100;
+  const tauxRetard = 0; // �� ajuster selon votre logique
+
+  // Fonction pour envoyer les données
+  const envoyerTaux = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/applications.statistiques/taux/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken') // Important pour Django
+        },
+        body: JSON.stringify({
+          tauxPresent: tauxPresent,
+          tauxAbsent: tauxAbsent,
+          tauxRetard: tauxRetard,
+          nbPresent: nbPresent,
+          nbAbsent: nbAbsent,
+          total: dernierStat.length
+        })
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        // Afficher l'image
+        const img = document.getElementById('graphique');
+        img.src = URL.createObjectURL(blob);
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+    }
+  };
+
+  // Fonction helper pour récupérer le CSRF token
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+
+
+
+  // STATUT ETUDIANT
+  const statutEtudiant = (index) => {
+    setDernierStat(prev =>
+      prev.map((e, i) =>
+        i === index ? { ...e, statut: !e.statut } : e
+      )
+    )
+
+
+  };
+
   useEffect(() => {
-    const nom_etudiant = ["RANDRETRA", "VELOSOA", "RATOVO", "RASOA", "RABE", "RAKOTO"];
-    const prenom_etudiant = ["Felantsoa", "Stakkino", "Narindra", "Sitraka", "Miohitra", "Toavina"];
 
 
     // soloina ilay liste any ampianarana ito rehefa tafidiatra ny base de données
@@ -85,20 +159,9 @@ export default function Dashboard() {
 
   }, []);
 
-  // STATUT ETUDIANT
-  const statutEtudiant = (index) => {
-    setDernierStat(prev =>
-      prev.map((e, i) =>
-        i === index ? { ...e, statut: !e.statut } : e
-      )
-    )
 
 
-  };
 
-  // ITO NO MANISA NY ABSENT
-  const nbPresent = dernierStat.filter(e => e.statut).length;
-  const nbAbsent = dernierStat.filter(e => !e.statut).length;
 
 
 
@@ -111,20 +174,21 @@ export default function Dashboard() {
       <div style={styles.menu}>
         <div style={styles.menu_left}>
 
-          <h2><FaHome></FaHome></h2>
-          <p><FaUserCircle></FaUserCircle></p>
-          <p><FaClipboardCheck></FaClipboardCheck></p>
-          <p><FaGraduationCap></FaGraduationCap></p>
-          <p><FaUserCheck></FaUserCheck></p>
-          <p><FaChartBar></FaChartBar></p>
-          <p><FaUniversity></FaUniversity></p>
+          <p><FaHome></FaHome> Acceuil</p>
+
+          <p><FaUserCircle></FaUserCircle> Compte</p>
+          <p><FaClipboardCheck></FaClipboardCheck> Pédagogique</p>
+          <p><FaGraduationCap></FaGraduationCap> Evaluation</p>
+          <p><FaUserCheck></FaUserCheck> Présence</p>
+          <p><FaChartBar></FaChartBar> Statistique</p>
+          <p><FaUniversity></FaUniversity> Structure Académique</p>
 
         </div>
 
         {/* ILAY MAMPIDITRA NY DOMAINE SY NY MENTION ARY NIVEAU ENY AMIN'NY SISISY */}
 
         <div style={styles.menu_right} >
-          <p><span style={{ fontWeight: "bold", fontSize: 18 }}>Présence du jour</span> <span style={{ fontSize: 20, padding: 5 }}><MdOutlineToday></MdOutlineToday></span></p>
+          <p><span style={{ fontWeight: "bold", fontSize: 20, color: "bisque" }}>Présence du jour</span> <span style={{ fontSize: 20, padding: 5 }}><MdOutlineToday></MdOutlineToday></span></p>
 
           <div className="input-group">
             <label htmlFor="domaine_choix">Domaine</label>
@@ -173,16 +237,24 @@ export default function Dashboard() {
 
         {/* ITO NO MISY ILAY DIGRAMME */}
         <div style={styles.right}>
+
+          {/*MAMOAKA NY SARY PILE */}
           <div className="rightgauche">
-            <h1 style={{color: "#c03300"}}>Calcul de taux d'absence</h1>
+           
+            <img id="graphique" style={{ maxWidth: '80%', height: "93%" }} />
 
           </div>
-
+          
           <div className="rightdroite">
-            <h1 style={{ color: "#48800d" }}>Diagramme</h1>
-
+            <img src="http://localhost:8000/applications.statistiques/diagramme/" style={{ maxWidth:'80%' ,height:"93%"}}/>
+          
           </div>
 
+          <button onClick={envoyerTaux}
+          style={{
+            background:"green",
+            height:55,
+            }}>GRAPHIQUE</button>
 
         </div>
 
@@ -213,13 +285,13 @@ export default function Dashboard() {
           <div style={styles.tableBox}>
 
             <table width="100%">
-              <thead>
+              <thead style={{ color: "bisque", textAlign: "left", fontSize: 20 }}>
                 <tr>
-                  <th>Numéro</th>
+                  <th style={{ textAlign: "center" }}>Numéro</th>
                   <th>Nom</th>
                   <th>Prénom</th>
-                  <th>Matricule</th>
-                  <th>Statut</th>
+                  <th style={{ textAlign: "center" }}>Matricule</th>
+                  <th style={{ textAlign: "center" }}>Statut</th>
                 </tr>
               </thead>
 
@@ -228,9 +300,9 @@ export default function Dashboard() {
                 {dernierStat.map((t, i) => (
                   <tr key={i}>
                     <td>{i + 1}</td>
-                    <td style={{ textAlign: "left", paddingLeft: 17 }}>{t.nom}</td>
-                    <td style={{ textAlign: "left", paddingLeft: 17 }}>{t.prenom}</td>
-                    <td>{t.matricule}</td>
+                    <td style={{ textAlign: "left" }}>{t.nom}</td>
+                    <td style={{ textAlign: "left" }}>{t.prenom}</td>
+                    <td style={{ textAlign: "center" }}>{t.matricule}</td>
                     <td style={{ textAlign: "center" }}>
                       <input type="checkbox" checked={t.statut} onChange={() => statutEtudiant(i)} />
                       <span style={{
@@ -273,13 +345,25 @@ const styles = {
     width: 320,
     background: "#020617",
     padding: 20,
-    display: "flex",
-    justifyContent: "space-between"
+    /*display: "flex",*/
+    justifyContent: "space-between",
+    position: "fixed",
+    top: 0,
+    bottom: 0,
   },
 
   menu_right: {
-    paddingRight: 20
+    paddingRight: 30,
+    
 
+
+  },
+
+  menu_left: {
+    marginBottom: 50,
+    textAlign: "left",
+    alignItems: "center",
+    lineHeight: 2,
   },
 
 
@@ -287,7 +371,10 @@ const styles = {
     display: "grid",
     flex: 1,
     padding: 30,
-    gap: 30
+    gap: 30,
+    marginLeft: "350px",
+    marginBottom: 50
+
   },
   cards: {
     display: "grid",
@@ -309,7 +396,7 @@ const styles = {
     gap: 20,
     height: "59.2vh",
     width: "100%",
-    borderRadius: 10,
+
     justifyContent: "space-around",
     display: "flex"
 
