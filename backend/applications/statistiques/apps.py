@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class StatistiquesConfig(AppConfig):
-    name = 'statistiques'
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'applications.statiques'

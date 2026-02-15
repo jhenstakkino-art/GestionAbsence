@@ -42,7 +42,7 @@ class PresenceEmpreinteAdmin(ReadOnlyAdmin):
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 @admin.register(PresenceProf)
 class PresenceProfAdmin(ReadOnlyAdmin):
-    list_display = ('seance_pp', 'etudiant_pp', 'statu_pp')
+    list_display = ('seance_pp', 'etudiant_pp__nom_etudiant', 'statu_pp')
     search_fields = ('etudiant_pp')
 
 

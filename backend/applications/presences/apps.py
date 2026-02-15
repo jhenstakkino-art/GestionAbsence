@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class PresencesConfig(AppConfig):
-    name = 'presences'
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'applications.presences'

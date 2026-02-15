@@ -5,7 +5,7 @@ from .models import ArchiveStatistique,ClassementStatistique
 @admin.register(ArchiveStatistique)
 class ArchiveStatistiqueAdmin(admin.ModelAdmin):
     list_display = ('jour','groupe_type','groupe_id','effectif','present','absent','taux_absence')
-    list_filter = ('jour','groupr_type')
+    list_filter = ('jour','groupe_type')
 
 
 

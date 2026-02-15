@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class EvaluationsConfig(AppConfig):
-    name = 'evaluations'
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'applications.evaluations'

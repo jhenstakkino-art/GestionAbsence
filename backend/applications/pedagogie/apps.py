@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class PedagogieConfig(AppConfig):
-    name = 'pedagogie'
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'applications.pedagogie'
