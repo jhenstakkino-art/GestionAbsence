@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/toaharison/Anja/Projet ERP/GestionAbsence/backend/environment/bin/python3" "$0" "$@"
-' '''
+#!/home/toaharison/Anja/PROJET/GestionAbsence/backend/environment/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

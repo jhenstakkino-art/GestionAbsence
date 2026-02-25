@@ -1,11 +1,12 @@
 from rest_framework import generics
-from .models import Domaine,Mention,Niveau,Promotion,Etudiant
+from .models import Domaine,Mention,Niveau,Promotion,Etudiant, Enseignant
 from .serializers import (
     DomaineSerializer,
     MentionSerializer,
     NiveauSerializer,
     PromotionSerializer,
-    EtudiantSerializer
+    EtudiantSerializer,
+    EnseignantSerializer,
 )
 
 
@@ -38,3 +39,11 @@ class PromotionListCreateView(generics.ListCreateAPIView):
 class EtudiantListCreateView(generics.ListCreateAPIView):
     queryset = Etudiant.objects.all()
     serializer_class = EtudiantSerializer
+
+
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+class EnseignantListCreateView(generics.ListCreateAPIView):
+    queryset = Enseignant.objects.all()
+    serializer_class = EnseignantSerializer
+

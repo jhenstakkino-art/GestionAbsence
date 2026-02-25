@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Domaine,Mention,Niveau,Promotion,Etudiant
+from .models import Domaine,Mention,Niveau,Promotion,Etudiant, Enseignant
 
 # -----------------------------------------------------------
 # -------------------
@@ -34,3 +34,11 @@ class EtudiantAdmin(admin.ModelAdmin):
     list_display=('matricule','nom_etudiant','prenom_etudiant','mention','niveau','promotion')
     list_filter=('mention','niveau','promotion')
     search_fields=('matricule','nom_etudiant','prenom_etudiant')
+
+# -----------------------------------------------------------
+# -----------------------------------------------------------
+@admin.register(Enseignant)
+class EseignantAdmin(admin.ModelAdmin):
+    list_display=('civilite','nom_enseignant','prenom_enseignant','date_de_naissance','lieu_de_naissance','nationalite', 'genre', 'email_enseignant', 'telephone','adresse', 'code_postale', 'ville', 'matiere_ens', 'statut_ens', 'date_emb', 'class_attr')
+    list_filter=('class_attr','civilite','genre')
+    search_fields=('nom_enseignant','prenom_enseignant', 'email_enseigant','class_attr', 'telephone')

@@ -178,7 +178,8 @@ export default function Dashboard() {
           <p><FaHome></FaHome> Acceuil</p>
 
           <p><FaUserCircle></FaUserCircle> Compte</p>
-          <p><FaClipboardCheck></FaClipboardCheck> Pédagogique</p>
+          
+          <Link to="/listeEns"><p><FaClipboardCheck></FaClipboardCheck> Pédagogique</p></Link>
           <p><FaGraduationCap></FaGraduationCap> Evaluation</p>
           <p><FaUserCheck></FaUserCheck> Présence</p>
           <p><FaChartBar></FaChartBar> Statistique</p>
@@ -234,7 +235,7 @@ export default function Dashboard() {
 
 
       {/***********************************************00000000000000000000000000000000000000000000000**********************************************************************/}
-      {/* CONTENT STATISTIQUE ITO DIA REHEFA MIKITIKA MENU DIA MIOVA FOTSINY */}V
+      {/* CONTENT STATISTIQUE ITO DIA REHEFA MIKITIKA MENU DIA MIOVA FOTSINY */}
       {/***********************************************00000000000000000000000000000000000000000000000**********************************************************************/}
 
       <div style={styles.content}>
