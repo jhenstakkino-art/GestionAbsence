@@ -126,11 +126,11 @@ export default function AjouterEtu() {
                         {/* Profil  SOLOINA AUTO AN'IZAY MANDRAY EO NA CONNECTEE*/}
                         <div className="flex items-center space-x-3 border-l pl-4 border-gray-200">
                             <div className="text-right hidden sm:block">
-                                <p className="text-sm font-medium text-gray-700">Marie Dupont</p>
+                                <p className="text-sm font-medium text-gray-700">RASOAVELO Lalaina</p>
                                 <p className="text-xs text-gray-500">Secrétaire</p>
                             </div>
                             <img
-                                src="https://ui-avatars.com/api/?name=Marie+Dupont&background=random"
+                                src="https://ui-avatars.com/api/?name=RASOAVELO+Lalaina&background=random"
                                 alt="Profile"
                                 className="h-10 w-10 rounded-full border border-gray-300"
                             />

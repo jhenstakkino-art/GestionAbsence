@@ -1,8 +1,24 @@
 import React from "react";
 import axios from "axios";
+import apiClient from "../services/api";
 import { useState, useEffect } from "react";
 
 export default function ListeEtu() {
+
+    const [mentions_get, setMentions] = useState([]);
+    const [niveaux_get, setNiveaux] = useState([]);
+    const [promotions_get, setPromotions] = useState([]);
+
+    useEffect(() => {
+        apiClient.get("/applications.structure_academique/mention/")
+            .then(res => setMentions(res.data));
+
+        apiClient.get("/applications.structure_academique/niveau/")
+            .then(res => setNiveaux(res.data));
+
+        apiClient.get("/applications.structure_academique/promotion/")
+            .then(res => setPromotions(res.data));
+    }, []);
 
     const [etudiants, setEtudiants] = useState([]);
 
@@ -114,7 +130,7 @@ export default function ListeEtu() {
                                         type="text"
                                         name="niveau"
                                         required
-                                        >
+                                    >
 
                                         <option value="">Classes</option>
                                         {niveau_etu.map(niv => (
@@ -136,27 +152,31 @@ export default function ListeEtu() {
                                 <thead className="bg-gray-50">
                                     <tr>
                                         <th scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            className=" text-center px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             <i className="fas fa-user mr-1"></i> Nom et Prénom
                                         </th>
                                         <th scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            className=" text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             <i className="fas fa-graduation-cap mr-1"></i> Matricule
                                         </th>
                                         <th scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            className=" text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             <i className="fas fa-birthday-cake mr-1"></i> Classe
                                         </th>
                                         <th scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            <i className="fas fa-phone mr-1"></i> Téléphone
+                                            className=" text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <i className="fas fa-birthday-cake mr-1"></i> Niveau
                                         </th>
                                         <th scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            <i className="fas fa-envelope mr-1"></i> Email
+                                            className=" text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <i className="fas fa-phone mr-1"></i> Promotion
                                         </th>
                                         <th scope="col"
-                                            className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            className=" text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <i className="fas fa-envelope mr-1"></i> Téléphone
+                                        </th>
+                                        <th scope="col"
+                                            className=" text-center px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Actions
                                         </th>
                                     </tr>
@@ -166,8 +186,8 @@ export default function ListeEtu() {
                                     {etudiants.map((etu) => {
                                         {/**ITO NO MANAO ILAY ABREVIATION */ }
                                         const initiales =
-                                            ens.nom_etudiant?.charAt(0) +
-                                            ens.prenom_etudiant?.charAt(0);
+                                            etu.nom_etudiant?.charAt(0) +
+                                            etu.prenom_etudiant?.charAt(0);
 
                                         return (
 
@@ -184,26 +204,40 @@ export default function ListeEtu() {
                                                                 {etu.nom_etudiant} {etu.prenom_etudiant}
                                                             </div>
                                                             <div className="text-xs text-gray-500">
-                                                                {etu.matricule}
+                                                                {etu.email_etudiant}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
+
+                                                {/**MATRICULE */}
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    {etu.matricule}
+                                                </td>
+
+                                                {/**ITO NO MAMPISEHO ILAY MENTION */}
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     <span
                                                         className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                        {etu.mention}, {etu.niveau}
+                                                            {mentions_get.find(men => men.id === etu.mention)?.nom_mention}
                                                     </span>
                                                 </td>
+
+                                                {/**ITO NY NIVEAU NALAINA */}
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {etu.date_de_naissance}
+                                                    {niveaux_get.find(niv => niv.id === etu.niveau)?.nom_niveau}
                                                 </td>
+
+                                                {/**PROMOTION RAH ILAINA */}
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    +261 {etu.telephone}
+                                                    {promotions_get.find(prom => prom.id === etu.promotion)?.nom_promotion}
                                                 </td>
+
+                                                {/**ITO NY TELEPHONE */}
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {etu.email_etudiant}
+                                                    + 261 {etu.telephone}
                                                 </td>
+
                                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <button className="text-green-600 hover:text-green-900 mr-3" title="Voir les détails">
                                                         <i className="fas fa-eye"></i>
@@ -211,8 +245,8 @@ export default function ListeEtu() {
                                                     <button className="text-blue-600 hover:text-blue-900 mr-3" title="Modifier">
                                                         <i className="fas fa-edit"></i>
                                                     </button>
-                                                    <button className="text-red-600 hover:text-red-900" title="Supprimer"
-                                                        onclick="confirmDelete(this)">
+                                                    <button className="text-red-600 hover:text-red-900" title="Supprimer">
+
                                                         <i className="fas fa-trash"></i>
                                                     </button>
                                                 </td>
