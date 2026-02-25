@@ -53,13 +53,12 @@ class Etudiant(models.Model):
     prenom_etudiant=models.CharField( max_length=100)
     date_de_naissance=models.DateField()
     telephone=models.CharField(max_length=12, unique=True, null=True, blank=True)
-    email_etudiant=models.EmailField(max_length=255, unique=True, null=True, blank=True)
     mention=models.ForeignKey( Mention, on_delete=models.PROTECT, related_name="etudiants")
     niveau=models.ForeignKey(Niveau, on_delete=models.PROTECT, related_name="etudiants")
     promotion=models.ForeignKey(Promotion, on_delete=models.PROTECT, related_name="etudiants")
 
     def __str__(self):
-        return f"{self.matricule} - {self.nom_etudiant} {self.prenom_etudiant} - {self.mention} {self.niveau} {self.telephone} {self.email_etudiant}"
+        return f"{self.matricule} - {self.nom_etudiant} {self.prenom_etudiant} - {self.mention} {self.niveau} {self.telephone}"
 
 
 # --------------------------------------------------------

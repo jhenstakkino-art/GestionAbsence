@@ -4,7 +4,7 @@ import UserLogin from './contextes/login'
 import UserRegister from './contextes/register'
 import DashboardPage from './contextes/dashboard'
 import DashboardLayout from './contextes/layoutContexte'
-import Etudiant from './contextes/ajouterEtu'
+import AjouterEtu from './contextes/ajouterEtu'
 import AjouterEns from './contextes/ajouterEns'
 import ListeEns from './contextes/listeEns'
 import ListeEtu from './contextes/listeEtu'
@@ -21,9 +21,9 @@ function App() {
           <Route path='/login' element={<UserLogin/>} />
           <Route path='/register' element={<UserRegister/>}/>
           <Route path='/dashboard' element={<DashboardPage/>}/>
-          <Route path='/ajouterEtu' element={<Etudiant/>}/>
+          <Route path='/ajouterEtu' element={<AjouterEtu/>}/>
           <Route path='/listeEns' element={<ListeEns/>}/>
-          <Route path='/ajouterEns' element={<AjouterEns/>}></Route>
+          <Route path='/ajouterEns' element={<AjouterEns/>}/>
           <Route path='/listeEtu' element={<ListeEtu/>}/>
 
 
