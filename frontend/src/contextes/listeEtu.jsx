@@ -19,6 +19,16 @@ export default function ListeEtu() {
     }, []);
 
 
+    const niveau_etu = [
+        { value: 1, label: 'L1' },
+        { value: 2, label: 'L2' },
+        { value: 3, label: 'L3' },
+        { value: 4, label: 'M1' },
+        { value: 5, label: 'M2' },
+
+    ];
+
+
     return (
 
         <div className="bg-gray-100 font-sans">
@@ -57,8 +67,7 @@ export default function ListeEtu() {
                         {/* Titre et Statistiques */}
                         <div>
                             <h1 className="text-2xl font-bold text-gray-800">Étudiants</h1>
-                            <p className="text-sm text-gray-500">Total : <span className="font-semibold text-green-600">156</span>
-                                étudiants enregistrés</p>
+
                         </div>
 
                         {/* Actions Droite (Bouton + Profil) */}
@@ -93,16 +102,27 @@ export default function ListeEtu() {
                                         <i className="fas fa-search text-gray-400"></i>
                                     </span>
                                     <input type="text"
-                                        className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                        className=" text-center block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                                         placeholder="Rechercher un étudiant..." />
                                 </div>
                                 <div className="flex space-x-2">
+
+
+                                    {/**MILA MODIFICATION KELY */}
                                     <select
-                                        className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
-                                        <option>Toutes les classNamees</option>
-                                        <option>Terminale S</option>
-                                        <option>Première ES</option>
-                                        <option>Seconde A</option>
+                                        className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                                        type="text"
+                                        name="niveau"
+                                        required
+                                        >
+
+                                        <option value="">Classes</option>
+                                        {niveau_etu.map(niv => (
+                                            <option key={niv.value} value={niv.value}>
+                                                {niv.label}
+
+                                            </option>))}
+
                                     </select>
                                     <button
                                         className="text-gray-500 hover:text-gray-700 border border-gray-300 rounded-md px-3 py-2">
