@@ -1,0 +1,113 @@
+.page {
+    min-height: 96.9vh;
+    background: linear-gradient(120deg, #0f172a, #020617);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.card-etud {
+    background: linear-gradient(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 1000px;
+    color: white;
+    height: 500px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+
+}
+
+.card-etud h2 {
+    text-align: center;
+    color: #3b82f6;
+    font-size: 22px;
+
+}
+
+.card-etud p {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #94a3b8;
+    font-size: 14px;
+
+}
+
+.form-etud .row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    margin-bottom: 35px;
+    line-height: 40px;
+    
+
+}
+
+.form-etud .row-in {
+    text-align: left;
+}
+
+.form-etud input {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    background: #0f172a;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+}
+
+input:focus {
+    outline: none !important;
+
+}
+
+
+
+.form-etud input::placeholder{
+    color: #64748b;
+
+}
+
+
+
+.enreg-etud {
+    margin-top:  20px;
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+.enreg-etud:hover {
+    background: #1d4ed8;
+}
+
+
+@media (max-width: 600px) {
+    .card-etud {
+        padding: 18px;
+
+    }
+
+    .form-etud .row {
+        grid-template-columns: 1f;
+
+    }
+
+    .card-etud h2 {
+        font-size:  18px;
+
+    }
+
+    .enreg-etud {
+        font-size: 14px;
+    }
+}

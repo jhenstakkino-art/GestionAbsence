@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,8 +45,8 @@ INSTALLED_APPS = [
     'applications.evaluations',
     'applications.pedagogie',
     'applications.presences',
-    'applications.statiques',
-    'applications.strusture_academique',
+    'applications.statistiques',
+    'applications.structure_academique',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
+]
+
+CORS_ALLOWED_ORIGINS =[
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5173", 
 ]
 
 ROOT_URLCONF = 'configuration.urls'
